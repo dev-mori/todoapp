@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import shortid from "shortid";
 import Form from "./Form";
 import List from "./List";
+
 const App = () => {
-  const todos = [
-    {
-      content: "課題をする",
-    },
-    {
-      content: "選択をする",
-    },
-    {
-      content: "電話をする",
-    },
-    {
-      content: "料理をする",
-    },
-  ];
+  const [todos, setTodos] = useState([]);
+  const addTodo = (content) => {
+    setTodos([
+      ...todos,
+      {
+        content: content,
+        id: shortid.generate(),
+      },
+    ]);
+  };
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
   return (
     <>
       <h1>Todo App</h1>
-      <Form />
-      <List todos={todos} />
+      <Form addTodo={addTodo} />
+      <List todos={todos} deleteTodo={deleteTodo} />
     </>
   );
 };
