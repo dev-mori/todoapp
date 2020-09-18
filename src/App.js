@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import shortid from "shortid";
 import Form from "./Form";
 import List from "./List";
+import shortid from "shortid";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
+  const [isDone, setIsDone] = useState(false);
   const addTodo = (content) => {
     setTodos([
       ...todos,
@@ -22,7 +23,12 @@ const App = () => {
     <>
       <h1>Todo App</h1>
       <Form addTodo={addTodo} />
-      <List todos={todos} deleteTodo={deleteTodo} />
+      <List
+        todos={todos}
+        deleteTodo={deleteTodo}
+        isDone={isDone}
+        setIsDone={setIsDone}
+      />
     </>
   );
 };

@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Item = ({ content, id, deleteTodo }) => {
-  const [isDone, setIsDone] = useState(false);
+const Item = ({ content, id, deleteTodo, setIsDone, isDone }) => {
+  const handleDone = () => {
+    setIsDone(!isDone);
+  };
   const handleDelete = () => {
     deleteTodo(id);
   };
   return (
     <li>
-      <input
-        type="checkbox"
-        onChange={() => {
-          setIsDone(!isDone);
-        }}
-      />
+      <input type="checkbox" onChange={handleDone} />
       <span style={{ textDecoration: isDone ? "line-through" : "none" }}>
         {content}
       </span>
