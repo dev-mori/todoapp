@@ -6,6 +6,7 @@ const Item = ({ content, id, deleteTodo, setIsDone, isDone }) => {
   };
   const handleDelete = () => {
     deleteTodo(id);
+    console.log(id);
   };
   return (
     <li>
